@@ -102,7 +102,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`user_id`, `nome`, `email`, `senha`, `type`) VALUES
 (2, 'Marcelino', 'marcelin@email.com', '123456', 1),
-(4, 'Dede', 'andle@email.com', '123456', 1);
+(4, 'Dede', 'andre@email.com', '123456', 1);
 
 --
 -- Indexes for dumped tables
