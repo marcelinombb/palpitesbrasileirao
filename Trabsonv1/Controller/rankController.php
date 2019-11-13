@@ -3,6 +3,8 @@
 include_once "../Model/rank.class.php";
 include_once "../Model/times.class.php";
 
+session_start();
+
 $rank = new Rank();
 
 if (!empty($_GET['addRank'])){
@@ -17,7 +19,7 @@ if (!empty($_GET['addRank'])){
         $soma += pow($dif, 2);
     }
     echo sqrt($soma);
-    $rank->AddRank(4, sqrt($soma));
+    $rank->AddRank($_SESSION['id'], sqrt($soma));
 }
 
 ?>

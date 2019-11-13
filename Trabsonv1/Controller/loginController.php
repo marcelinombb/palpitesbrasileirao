@@ -23,6 +23,8 @@ if($row)
 {
 $_SESSION['login'] = $login;
 $_SESSION['senha'] = $senha;
+$_SESSION['nome'] = $row['nome'];
+$_SESSION['id'] = $row['user_id'];
 header('location:../View/niuindex.php');
 }
 else{
