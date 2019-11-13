@@ -27,11 +27,11 @@ $logado = $_SESSION['login'];
 
             </div>
             <div class="col-sm-4">
-                <div class="container">
+                <div class="container" id="botaumid">
                     <?php
                     include_once "tabela.php";
                     ?>
-                    <button onclick="envia()">clica ae</button>
+                    
                 </div>
             </div>
             <div class="col-sm-4 bg-warning">
@@ -46,7 +46,9 @@ $logado = $_SESSION['login'];
             animation: 150,
             ghostClass: 'bg-primary'
         });
-        $("#rank").load("rank.php");
+        setInterval(() => {
+            $("#rank").load("rank.php");
+        }, 500);
 
         function envia() {
             var test = document.querySelectorAll('#example1');
@@ -57,7 +59,7 @@ $logado = $_SESSION['login'];
                 return response.text()
             })
             .then(function(res) {
-                document.getElementById("example1").innerHTML = res;
+                document.getElementById("botaumid").innerHTML = res;
                 $("#rank").load("rank.php");
             })
         }
