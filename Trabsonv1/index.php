@@ -38,18 +38,17 @@ define("ROOT_PATH", dirname(__FILE__));
         $("#rank").load("View/rank.php");
 
         function envia() {
-            var test = document.querySelectorAll('ol');
+            var test = document.querySelectorAll('#example1');
             const data = test['0'].innerText;
 
             fetch("Controller/rankController.php?addRank=" + data)
-                .then(function(response) {
-                    return response.text()
-                })
-                .then(function(res) {
-                    document.getElementById("example1").innerHTML = res;
-                    $("#rank").load("View/rank.php");
-
-                })
+            .then(function(response) {
+                return response.text()
+            })
+            .then(function(res) {
+                document.getElementById("example1").innerHTML = res;
+                $("#rank").load("View/rank.php");
+            })
         }
     </script>
 </body>

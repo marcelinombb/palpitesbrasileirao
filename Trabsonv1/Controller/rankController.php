@@ -1,5 +1,7 @@
 <?php
+
 include_once "../Model/rank.class.php";
+include_once "../Model/times.class.php";
 
 $rank = new Rank();
 
@@ -16,7 +18,6 @@ if (!empty($_GET['addRank'])){
     }
     echo sqrt($soma);
     $rank->AddRank(4, sqrt($soma));
-
 }
 
 ?>
