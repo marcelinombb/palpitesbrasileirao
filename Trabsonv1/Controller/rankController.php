@@ -14,12 +14,16 @@ if (!empty($_GET['addRank'])){
 
     //calculo ae
     $soma = 0;
+    $cont = 0;
     foreach ($palpite as $key => $value) {
         $dif = $key - array_search($value, $arrei);
+        if(!$dif){
+            $cont++;
+        }
         $soma += pow($dif, 2);
     }
     echo sqrt($soma);
-    $rank->AddRank($_SESSION['id'], sqrt($soma));
+    $rank->AddRank($_SESSION['id'], sqrt($soma),$cont);
 }
 
 ?>

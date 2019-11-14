@@ -1,7 +1,7 @@
 <?php
 include_once "../Controller/rankController.php";
 $rank = new Rank();
-$r = $rank->RankAtual();
+$r = $rank->RankAtual('palpite');
 
 if ($r) {
     echo "<ol class='list-group col'>";

@@ -34,8 +34,7 @@ $logado = $_SESSION['login'];
                     
                 </div>
             </div>
-            <div class="col-sm-4 bg-warning">
-                <h4>alguma coisa aqui</h4>
+            <div class="col-sm-4 bg-warning" id="outroid">
             </div>
         </div>
     </div>
@@ -49,6 +48,9 @@ $logado = $_SESSION['login'];
         setInterval(() => {
             $("#rank").load("rank.php");
         }, 500);
+        setInterval(() => {
+            $("#outroid").load("rankPosicao.php");
+        }, 500);
 
         function envia() {
             var test = document.querySelectorAll('#example1');
@@ -60,7 +62,6 @@ $logado = $_SESSION['login'];
             })
             .then(function(res) {
                 document.getElementById("botaumid").innerHTML = res;
-                $("#rank").load("rank.php");
             })
         }
     </script>
