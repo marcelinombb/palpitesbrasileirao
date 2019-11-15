@@ -23,18 +23,20 @@ $logado = $_SESSION['login'];
 <body>
     <div class="container">
         <div class="row">
-            <div class="col-sm-4 bg-danger" id="rank">
-
+            <div class="col-sm-4 bg-danger">
+                    <h5>Rank de proximidade de posições</h5>
+                    <ol class='list-group col' id="rank"></ol>
             </div>
             <div class="col-sm-4">
                 <div class="container" id="botaumid">
                     <?php
                     include_once "tabela.php";
                     ?>
-                    
                 </div>
             </div>
-            <div class="col-sm-4 bg-warning" id="outroid">
+            <div class="col-sm-4 bg-warning">
+                <h5>Rank de acertos de posições</h5>
+                <ol class='list-group col' id="outroid"></ol>
             </div>
         </div>
     </div>
@@ -45,9 +47,11 @@ $logado = $_SESSION['login'];
             animation: 150,
             ghostClass: 'bg-primary'
         });
+
         setInterval(() => {
             $("#rank").load("rank.php");
         }, 500);
+
         setInterval(() => {
             $("#outroid").load("rankPosicao.php");
         }, 500);

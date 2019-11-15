@@ -15,8 +15,14 @@ if (!empty($_GET['addRank'])){
     //calculo ae
     $soma = 0;
     $cont = 0;
+    
+    unset($arrei[0]);
+    unset($palpite[0]);
+
     foreach ($palpite as $key => $value) {
         $dif = $key - array_search($value, $arrei);
+        $r = array_search($value, $arrei);
+        echo "posi palpite $key posi real $r<br>";
         if(!$dif){
             $cont++;
         }

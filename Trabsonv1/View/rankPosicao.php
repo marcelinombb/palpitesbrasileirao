@@ -1,12 +1,11 @@
 <?php
 include_once "../Controller/rankController.php";
 $rank = new Rank();
-$r = $rank->RankAtual('palpite');
+$r = $rank->RankAtual('acertos');
 
 if ($r) {
     foreach ($r as $key => $value) {
-    	$pasento = 100 - $value['rank']; 
-        echo '<li class="list-item">' . $value['nome'] ." $pasento% </li>";
+        echo '<li class="list-item">' . $value['nome'] . ' '.$value['rank'].'</li>';
     }
 }
 else {

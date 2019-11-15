@@ -17,7 +17,8 @@ class Rank extends Connect
 
 	public function RankAtual($ranque){
 		$conn = parent::conn();
-		$query = "SELECT users.nome as nome FROM palpites INNER JOIN users on users.user_id = palpites.id_user ORDER BY " .$ranque. " ASC";
+		$eoq = ["palpite"=>'ASC',"acertos"=>'DESC'];
+		$query = "SELECT users.nome as nome,palpites.$ranque as rank FROM palpites INNER JOIN users on users.user_id = palpites.id_user ORDER BY " .$ranque." ".$eoq[$ranque];
 		if ($res = mysqli_query($conn,$query)) {
 			while ($row = mysqli_fetch_assoc($res)) {
 				$rank [] =$row;
