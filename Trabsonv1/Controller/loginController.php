@@ -1,6 +1,6 @@
 <?php 
 
-include_once "../Model/login.class.php";
+include_once "../Model/User.class.php";
 
 // session_start inicia a sessão
 session_start();
@@ -9,7 +9,7 @@ $login = $_POST['login'];
 $senha = $_POST['senha'];
 
 // new <class> cria uma instância da classe
-$log = new Login();
+$log = new User();
 
 /* Logo abaixo temos um bloco com if e else, verificando se a variável $result foi 
 bem sucedida, ou seja se ela estiver encontrado algum registro idêntico o seu valor
@@ -21,11 +21,17 @@ $row = mysqli_fetch_assoc($log->logar($login,$senha));
 
 if($row)
 {
-$_SESSION['login'] = $login;
-$_SESSION['senha'] = $senha;
-$_SESSION['nome'] = $row['nome'];
-$_SESSION['id'] = $row['user_id'];
-header('location:../View/niuindex.php');
+  $_SESSION['login'] = $login;
+  $_SESSION['senha'] = $senha;
+  $_SESSION['nome'] = $row['nome'];
+  $_SESSION['id'] = $row['user_id'];
+  $_SESSION['tipo'] = $row['type'];
+  if($_SESSION['tipo'] == 2){
+    header('location:../View/clientIndex.php');
+  }
+  if($_SESSION['tipo'] == 1){
+    header('location:../View/admIndex.php');
+  }
 }
 else{
   unset ($_SESSION['login']);

@@ -18,13 +18,14 @@ if(isset($_GET['mo'])){
     <form method="post" action="Controller/loginController.php" id="formlogin" name="formlogin">
         <fieldset id="fie">
             <legend>LOGIN</legend><br />
-            <label>NOME : </label>
+            <label>EMAIL : </label>
             <input type="text" name="login" id="login" required/><br />
             <label>SENHA :</label>
             <input type="password" name="senha" id="senha" required/><br />
             <input type="submit" value="LOGAR  " />
         </fieldset>
     </form>
+    <a href="./View/cadastro.php"><button style="margin-top: 2px">Cadastrar</button></a>
 </body>
 
 </html>

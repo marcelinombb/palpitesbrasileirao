@@ -8,20 +8,23 @@ session_start();
 $rank = new Rank();
 
 if (!empty($_GET['addRank'])){
+    $times = new Times();
     $palpite = explode(" ", $_GET['addRank']);
-    //arrei de teste na real vamo pegar do banco 
-    $arrei = ["", "Palmeiras", "Sao_Paulo", "Gremio", "Flamengo", "Corinthians", "Athletico-PR", "Santos", "Internacional", "Goias", "Bahia", "Atletico-MG", "Vasco_da_Gama", "Fortaleza", "Botafogo", 'Ceara', "Cruzeiro", "Fluminense", "CSA", "Chapecoense", "Avai"];
+
+    $a = [' '];
+    foreach ($times->times() as $key => $value) {
+        array_push($a,$value['nome']);
+    }
 
     //calculo ae
     $soma = 0;
     $cont = 0;
     
-    unset($arrei[0]);
     unset($palpite[0]);
 
     foreach ($palpite as $key => $value) {
-        $dif = $key - array_search($value, $arrei);
-        $r = array_search($value, $arrei);
+        $dif = $key - array_search($value, $a);
+        $r = array_search($value, $a);
         echo "posi palpite $key posi real $r<br>";
         if(!$dif){
             $cont++;
