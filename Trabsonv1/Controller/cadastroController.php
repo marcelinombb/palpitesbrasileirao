@@ -1,6 +1,6 @@
 <?php
 
-include_once "../Model/User.class.php";
+include_once "../Model/user.class.php";
 
 $nome = $_POST['nome'];
 $email = $_POST['email'];
