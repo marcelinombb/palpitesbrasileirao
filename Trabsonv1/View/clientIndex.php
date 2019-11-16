@@ -1,6 +1,6 @@
 <?php
 // site dos clientes, apenas
-define("ROOT_PATH", dirname(__FILE__));
+//define("ROOT_PATH", dirname(__FILE__));
 session_start();
 if((!isset ($_SESSION['login']) == true) and (!isset ($_SESSION['senha']) == true)){
   unset($_SESSION['login']);

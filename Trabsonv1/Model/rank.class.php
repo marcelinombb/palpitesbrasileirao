@@ -27,5 +27,13 @@ class Rank extends Connect
 	}
 	return 0;
 }
+	public function attRank($id_user, $palpite, $cont){
+		$conn = parent::conn();
+		$query = "UPDATE palpites SET id_user = $id_user, palpite = $palpite, acertos = $cont";
+		if (mysqli_query($conn,$query)) {
+			return 1;
+		}
+		return 0;
+	}
 
 }

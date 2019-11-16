@@ -17,7 +17,7 @@
 
 
 <?php
-define("ROOT_PATH", dirname(__FILE__));
+//define("ROOT_PATH", dirname(__FILE__));
 session_start();
 if((!isset ($_SESSION['login']) == true) and (!isset ($_SESSION['senha']) == true)){
   unset($_SESSION['login']);
@@ -49,6 +49,17 @@ $logado = $_SESSION['login'];
                     <?php
                     include_once "tabela.php";
                     ?>
+                    <a href="./ademiro/attAll.php"><button type="button" class="btn btn-success bp" style="fixed-bottom; margin-left:100px;">atualizar tabela</button></a>
+                    <style>
+                    .bp{
+                	position: fixed;
+                    float: bottom;
+                    bottom: 15px;
+                    right: 15px;
+                    z-index: 100;
+                    border-radius: 10%;
+}
+                    </style>
                 </div>
             </div>
             <div class="col-sm-4 bg-warning">

@@ -13,4 +13,17 @@ class Times extends Connect
         }
         return 0;
     }
+
+    public function atualizarPosicoes($pos){
+        print_r($pos);
+        $conn = parent::conn();
+        $cont = 0;
+        foreach ($pos as $key => $value) {
+        $query = "UPDATE times SET Posicao_BR = $key WHERE nome = '$value' ";
+            if($res =  mysqli_query($conn,$query)){
+                $cont++;
+            }
+        }
+        return $cont >= 19 ? "ok": "deu ruim";
+    }
 }
