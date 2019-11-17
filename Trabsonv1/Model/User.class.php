@@ -10,6 +10,9 @@ class User extends connect{
     }
 
     public function cadastrar($nome, $email, $senha){
+        $nome = filter_var($nome,FILTER_SANITIZE_STRING);
+        $email = filter_var($email,FILTER_SANITIZE_STRING);
+        $senha = filter_var($senha,FILTER_SANITIZE_STRING);
         $conn = parent::conn();
         $query = "INSERT INTO `users` (`nome`, `email`, `senha`, `type`) VALUES ('$nome', '$email', '$senha', 2)";
         $res = mysqli_query($conn,$query);

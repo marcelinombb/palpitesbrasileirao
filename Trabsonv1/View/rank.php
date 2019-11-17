@@ -5,7 +5,8 @@ $r = $rank->RankAtual('palpite');
 
 if ($r) {
     foreach ($r as $key => $value) {
-    	$pasento = 100 - $value['rank']; 
+        $pasento = 100 - $value['rank'];
+        $pasento = number_format($pasento, 1, '.', '');
         echo '<li class="list-item">' . $value['nome'] ." $pasento% </li>";
     }
 }

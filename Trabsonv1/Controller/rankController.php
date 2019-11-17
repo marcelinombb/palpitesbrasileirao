@@ -12,7 +12,7 @@ if (!empty($_GET['addRank'])){
     $palpite = explode(" ", $_GET['addRank']);
 
     $a = [' '];
-    foreach ($times->times() as $key => $value) {
+    foreach ($times->times("posicao_BR") as $key => $value) {
         array_push($a,$value['nome']);
     }
 

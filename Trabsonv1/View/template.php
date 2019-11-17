@@ -1,30 +1,12 @@
 <?php
-//    atualmente num tem nada, mas aqui vai ser o site pro ademiro poder mexer nas coisas
-?>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<?php
 //define("ROOT_PATH", dirname(__FILE__));
 session_start();
-if((!isset ($_SESSION['login']) == true) and (!isset ($_SESSION['senha']) == true)){
-  unset($_SESSION['login']);
-  unset($_SESSION['senha']);
-  header('location:../index.php');
+if ((!isset($_SESSION['login']) == true) and (!isset($_SESSION['senha']) == true)) {
+    unset($_SESSION['login']);
+    unset($_SESSION['senha']);
+    header('location:../index.php');
 }
- 
+
 $logado = $_SESSION['login'];
 ?>
 
@@ -41,30 +23,40 @@ $logado = $_SESSION['login'];
     <div class="container">
         <div class="row">
             <div class="col-sm-4 bg-danger">
+                <div class="container">
                     <h5>Rank de proximidade de posições</h5>
                     <ol class='list-group col' id="rank"></ol>
+                </div>
+
             </div>
             <div class="col-sm-4">
                 <div class="container" id="botaumid">
                     <?php
                     include_once "tabela.php";
                     ?>
-                    <a href="./ademiro/attAll.php"><button type="button" class="btn btn-success bp" style="fixed-bottom; margin-left:100px;">atualizar tabela</button></a>
-                    <style>
-                    .bp{
-                	position: fixed;
-                    float: bottom;
-                    bottom: 15px;
-                    right: 15px;
-                    z-index: 100;
-                    border-radius: 10%;
-}
-                    </style>
+                    <?php if ($_SESSION['tipo'] == 1) { ?>
+                        <!-- só aparece se for um adm logado 
+                        o template se modifica de acordo com tipo de usuarios    
+                        -->
+                        <a href="./ademiro/attAll.php"><button type="button" class="btn btn-success bp" style="fixed-bottom; margin-left:100px;">atualizar tabela</button></a>
+                        <style>
+                            .bp {
+                                position: fixed;
+                                float: bottom;
+                                bottom: 15px;
+                                right: 15px;
+                                z-index: 100;
+                                border-radius: 10%;
+                            }
+                        </style>
+                    <?php } ?>
                 </div>
             </div>
             <div class="col-sm-4 bg-warning">
-                <h5>Rank de acertos de posições</h5>
-                <ol class='list-group col' id="outroid"></ol>
+                <div class="container">
+                    <h5>Rank de acertos de posições</h5>
+                    <ol class='list-group col' id="outroid"></ol>
+                </div>
             </div>
         </div>
     </div>
@@ -89,12 +81,12 @@ $logado = $_SESSION['login'];
             const data = test['0'].innerText;
 
             fetch("../Controller/rankController.php?addRank=" + data)
-            .then(function(response) {
-                return response.text()
-            })
-            .then(function(res) {
-                document.getElementById("botaumid").innerHTML = res;
-            })
+                .then(function(response) {
+                    return response.text()
+                })
+                .then(function(res) {
+                    document.getElementById("botaumid").innerHTML = res;
+                })
         }
     </script>
 </body>

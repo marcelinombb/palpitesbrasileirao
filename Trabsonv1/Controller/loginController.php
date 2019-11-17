@@ -26,12 +26,7 @@ if($row)
   $_SESSION['nome'] = $row['nome'];
   $_SESSION['id'] = $row['user_id'];
   $_SESSION['tipo'] = $row['type'];
-  if($_SESSION['tipo'] == 2){
-    header('location:../View/clientIndex.php');
-  }
-  if($_SESSION['tipo'] == 1){
-    header('location:../View/admIndex.php');
-  }
+    header('location:../View/template.php');
 }
 else{
   unset ($_SESSION['login']);
