@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 16-Nov-2019 às 01:40
+-- Tempo de geração: 17-Nov-2019 às 03:56
 -- Versão do servidor: 10.4.8-MariaDB
 -- versão do PHP: 7.3.10
 
@@ -53,7 +53,8 @@ INSERT INTO `palpites` (`id_palpite`, `id_user`, `palpite`, `acertos`) VALUES
 (41, 2, 1.41421, 18),
 (43, 4, 0, 20),
 (44, 2, 0, 20),
-(45, 6, 0, 20);
+(45, 6, 0, 20),
+(46, 2, 0, 20);
 
 -- --------------------------------------------------------
 
@@ -91,8 +92,8 @@ INSERT INTO `times` (`id_time`, `Posicao_BR`, `nome`, `logo`) VALUES
 (16, 16, 'Cruzeiro', '//ssl.gstatic.com/onebox/media/sports/logos/cfkLbPGt7TD_FSDotajcbA_48x48.png'),
 (17, 17, 'Fluminense', '//ssl.gstatic.com/onebox/media/sports/logos/fCMxMMDF2AZPU7LzYKSlig_48x48.png'),
 (18, 18, 'CSA', '//ssl.gstatic.com/onebox/media/sports/logos/1TftGbZs_8FcYQUdRZC2Sw_48x48.png'),
-(19, 20, 'Chapecoense', '//ssl.gstatic.com/onebox/media/sports/logos/cZ4ga5Fdqe3Pd-dEcpjUmg_48x48.png'),
-(20, 21, 'Avai', '//ssl.gstatic.com/onebox/media/sports/logos/9cwCmoBXGaPJ_Q5cgUeocg_48x48.png');
+(19, 19, 'Chapecoense', '//ssl.gstatic.com/onebox/media/sports/logos/cZ4ga5Fdqe3Pd-dEcpjUmg_48x48.png'),
+(20, 20, 'Avai', '//ssl.gstatic.com/onebox/media/sports/logos/9cwCmoBXGaPJ_Q5cgUeocg_48x48.png');
 
 -- --------------------------------------------------------
 
@@ -115,7 +116,8 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`user_id`, `nome`, `email`, `senha`, `type`) VALUES
 (2, 'Marcelino', 'marcelin@email.com', '123456', 1),
 (4, 'Dede', 'andre@email.com', '123456', 1),
-(6, 'coe gabriel', 'a@a', '123', 2);
+(6, 'coe gabriel', 'a@a', '123', 2),
+(13, 'a', 'a@ab', '123', 2);
 
 --
 -- Índices para tabelas despejadas
@@ -132,8 +134,7 @@ ALTER TABLE `palpites`
 -- Índices para tabela `times`
 --
 ALTER TABLE `times`
-  ADD PRIMARY KEY (`id_time`),
-  ADD UNIQUE KEY `Posicao_BR` (`Posicao_BR`);
+  ADD PRIMARY KEY (`id_time`);
 
 --
 -- Índices para tabela `users`
@@ -150,7 +151,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de tabela `palpites`
 --
 ALTER TABLE `palpites`
-  MODIFY `id_palpite` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `id_palpite` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
 -- AUTO_INCREMENT de tabela `times`
@@ -162,7 +163,7 @@ ALTER TABLE `times`
 -- AUTO_INCREMENT de tabela `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- Restrições para despejos de tabelas
