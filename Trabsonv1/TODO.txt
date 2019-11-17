@@ -1,7 +1,9 @@
-!!atualizar os palpites/ranks quando o bd for atualizado;!!
-!!atualizar a tabela caso um user esteja online quando o bd for atualizado;!!
+!!atualizar os palpites/ranks quando o bd for atualizado!!
+!!atualizar a tabela caso um user esteja online quando o bd for atualizado!!
+
+!!DEIXAR O SITE BONITO!!
 
 ?poder ver seu palpite?
-?apagar user?
+?adm poder apagar user?
 
-!!deixar o site bonito!!
+
