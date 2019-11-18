@@ -11,7 +11,7 @@ if (!empty($_GET['attTimes'])){
     unset($pos[0]);
 
     if($times->atualizarPosicoes($pos) == 'ok'){
-        header('Location: ../View/admIndex.php');
+        header('Location: ../View/template.php');
     }
 
 }
