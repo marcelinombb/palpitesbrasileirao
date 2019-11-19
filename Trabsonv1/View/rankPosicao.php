@@ -5,7 +5,8 @@ $r = $rank->RankAtual('acertos');
 
 if ($r) {
     foreach ($r as $key => $value) {
-        echo '<li class="list-item">' . $value['nome'] . ' '.$value['rank'].'</li>';
+        $key = $key + 1;
+        echo "<li class='list-group-item'>$key# " . $value['nome'] . ' '.$value['rank'].'</li>';
     }
 }
 else {
