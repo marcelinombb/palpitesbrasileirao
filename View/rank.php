@@ -8,16 +8,16 @@ if ($r) {
         $pasento = 100 - $value['rank'];
         $pasento = number_format($pasento, 0, '.', '');
         if ($pasento==100) {
-            $cor = "list-group-item-primary";
+            $cor = "primary";
         }elseif ($pasento >= 90 and $pasento <= 99) {
-            $cor = "list-group-item-success";
+            $cor = "success";
         }elseif ($pasento >= 51 and $pasento <=89) {
-            $cor = "list-group-item-warning";
+            $cor = "warning";
         }else {
-            $cor = "list-group-item-danger";
+            $cor = "danger";
         }
         $key = $key+1;
-        echo "<li class='list-group-item $cor'>$key# " . $value['nome'] ." $pasento% </li>";
+        echo "<li class='list-group-item'><span class='badge badge-$cor badge-pill'>$key#</span>  " . $value['nome'] ." $pasento%</li>";
     }
 }
 else {

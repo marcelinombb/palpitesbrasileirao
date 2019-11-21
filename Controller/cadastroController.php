@@ -1,8 +1,12 @@
 <?php
 
-include_once "../Model/user.class.php";
+include_once "../Model/User.class.php";
 
-$nome = $_POST['nome'];
+if (in_array("", $_POST)) {
+    header("../index.php");
+}
+else{
+    $nome = $_POST['nome'];
 $email = $_POST['email'];
 $senha = $_POST['senha'];
 
@@ -26,3 +30,4 @@ if($row == 'ok'){
     <?php
 }
 ?>
+}

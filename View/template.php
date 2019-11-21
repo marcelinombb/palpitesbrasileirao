@@ -16,10 +16,9 @@ $logado = $_SESSION['login'];
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>new template</title>
+    <title>Palpite</title>
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
-    <link rel="stylesheet" href="assets/css/Navigation-Clean.css">
     <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 
@@ -83,8 +82,8 @@ $logado = $_SESSION['login'];
                             </ul>
                             <div class="tab-content">
                                 <div class="tab-pane active" role="tabpanel" id="tab-1">
-                                    <div class="col-xl-12 col-sm-9" style="margin-top: 10px;">
-                                        <ol class='list-group' id="rank"></ol>
+                                    <div class="col-xl-12 col-sm-9 " style="margin-top: 10px;">
+                                        <ol class='list-group ' id="rank"></ol>
                                     </div>
                                 </div>
                                 <div class="tab-pane" role="tabpanel" id="tab-2">
