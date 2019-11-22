@@ -4,14 +4,19 @@ class Times extends Connect
 {
     public function times(){
         $conn = parent::conn();
-        $cuery = "SELECT * FROM times ORDER BY posicao_BR";
-        if ($res = mysqli_query($conn, $cuery)) {
-            while ($row = mysqli_fetch_assoc($res)) {
-               $times [] = $row;
+        $query = "SELECT * FROM times ORDER BY posicao_BR";
+
+        $stt = $conn->prepare($query);
+        $data;
+        if ($stt->execute()) {
+            while($result = $stt->fetch(PDO::FETCH_ASSOC)){
+                $data[] = $result;
             }
-            return $times;
+            return $data;
+        }else{
+            return  0;
         }
-        return 0;
+
     }
 
     public function atualizarPosicoes($pos){

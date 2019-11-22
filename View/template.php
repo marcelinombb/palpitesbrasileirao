@@ -40,7 +40,7 @@ $logado = $_SESSION['login'];
             </div>
         </div>
         <div class="row">
-            <div class="col col-md-8" id="botaumid">
+            <div class="col col-md-8 col-sm-12" id="botaumid">
                 <?php
                 include_once "tabela.php";
                 ?>
@@ -48,7 +48,7 @@ $logado = $_SESSION['login'];
                     <!-- só aparece se for um adm logado 
                         o template se modifica de acordo com tipo de usuarios    
                         -->
-                    <a href="./ademiro/attAll.php"><button type="button" class="btn btn-success bp" style="fixed-bottom; margin-left:100px;">atualizar tabela</button></a>
+                    <a href="#"><button type="button" class="btn btn-success bp" style="fixed-bottom; margin-left:100px;">atualizar tabela</button></a>
                     <style>
                         .bp {
                             position: fixed;

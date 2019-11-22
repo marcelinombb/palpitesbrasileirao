@@ -1,12 +1,20 @@
 <?php
 include_once "connect.class.php";
 
-class User extends connect{
+class User extends Connect{
     public function logar($login, $senha){
         $conn = parent::conn();
         $query = "SELECT * FROM `users` WHERE `email` = '$login' AND `senha`= '$senha'";
-
-        return mysqli_query($conn,$query);
+        $stt = $conn->prepare($query);
+        $data;
+        if ($stt->execute()) {
+            while ($result = $stt->fetch(PDO::FETCH_ASSOC)) {
+                $data[] = $result;
+            }
+            return $data;
+        } else {
+            return  0;
+        }
     }
 
     public function cadastrar($nome, $email, $senha){
@@ -15,8 +23,8 @@ class User extends connect{
         $senha = filter_var($senha,FILTER_SANITIZE_STRING);
         $conn = parent::conn();
         $query = "INSERT INTO `users` (`nome`, `email`, `senha`, `type`) VALUES ('$nome', '$email', '$senha', 2)";
-        $res = mysqli_query($conn,$query);
-        if($res){
+        $stt = $conn->prepare($query);
+        if($stt->execute()){
             return 'ok';
         }
         return 'n ok';

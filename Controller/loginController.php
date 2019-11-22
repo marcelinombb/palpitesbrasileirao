@@ -17,21 +17,23 @@ será igual a 1, se não, se não tiver registros seu valor será 0. Dependendo 
 resultado ele redirecionará para a página site.php ou retornara  para a página 
 do formulário inicial para que se possa tentar novamente realizar o login */
 
-$row = mysqli_fetch_assoc($log->logar($login,$senha));
+//karai andle isso era pra estar no User.class.php logar();
+//$row = mysqli_fetch_assoc($log->logar($login,$senha));
 
+$row = $log->logar($login,$senha);
 if($row)
 {
   $_SESSION['login'] = $login;
   $_SESSION['senha'] = $senha;
-  $_SESSION['nome'] = $row['nome'];
-  $_SESSION['id'] = $row['user_id'];
-  $_SESSION['tipo'] = $row['type'];
-    header('location:../View/template.php');
+  $_SESSION['nome'] = $row[0]['nome'];
+  $_SESSION['id'] = $row[0]['user_id'];
+  $_SESSION['tipo'] = $row[0]['type'];
+  header('location:../View/template.php');
 }
 else{
   unset ($_SESSION['login']);
   unset ($_SESSION['senha']);
-header('location:../index.php?mo=t');
+  header('location:../index.php?mo=t');
    
   }
 ?>
