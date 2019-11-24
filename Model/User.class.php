@@ -4,7 +4,7 @@ include_once "connect.class.php";
 class User extends Connect{
     public function logar($login, $senha){
         $conn = parent::conn();
-        $query = "SELECT * FROM `users` WHERE `email` = '$login' AND `senha`= '$senha'";
+        $query = "SELECT * FROM public.users WHERE email = '$login' AND senha= '$senha'";
         $stt = $conn->prepare($query);
         $data;
         if ($stt->execute()) {
@@ -22,7 +22,7 @@ class User extends Connect{
         $email = filter_var($email,FILTER_SANITIZE_STRING);
         $senha = filter_var($senha,FILTER_SANITIZE_STRING);
         $conn = parent::conn();
-        $query = "INSERT INTO `users` (`nome`, `email`, `senha`, `type`) VALUES ('$nome', '$email', '$senha', 2)";
+        $query = "INSERT INTO public.users (nome, email, senha, tipo) VALUES ('$nome', '$email', '$senha', false)";
         $stt = $conn->prepare($query);
         if($stt->execute()){
             return 'ok';

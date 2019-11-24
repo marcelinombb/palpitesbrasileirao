@@ -26,8 +26,8 @@ if($row)
   $_SESSION['login'] = $login;
   $_SESSION['senha'] = $senha;
   $_SESSION['nome'] = $row[0]['nome'];
-  $_SESSION['id'] = $row[0]['user_id'];
-  $_SESSION['tipo'] = $row[0]['type'];
+  $_SESSION['id'] = $row[0]['id_user'];
+  $_SESSION['tipo'] = $row[0]['tipo'];
   header('location:../View/template.php');
 }
 else{

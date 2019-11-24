@@ -41,10 +41,11 @@ $logado = $_SESSION['login'];
         </div>
         <div class="row">
             <div class="col col-md-8 col-sm-12" id="botaumid">
+                <span id='alert'></span>
                 <?php
-                include_once "tabela.php";
+                    include_once "tabela.php";
                 ?>
-                <?php if ($_SESSION['tipo'] == 1) { ?>
+                <?php if ($_SESSION['tipo'] == true) { ?>
                     <!-- só aparece se for um adm logado 
                         o template se modifica de acordo com tipo de usuarios    
                         -->
@@ -130,7 +131,8 @@ $logado = $_SESSION['login'];
                     return response.text()
                 })
                 .then(function(res) {
-                    document.getElementById("botaumid").innerHTML = res;
+                    document.getElementById("alert").innerHTML = res;
+                    document.getElementById('btnTable').disabled = true;
                 })
         }
     </script>

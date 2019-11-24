@@ -11,6 +11,7 @@ if (!empty($_GET['addRank'])){
     $times = new Times();
     $palpite = explode(" ", $_GET['addRank']);
     $a = [' '];
+    
     foreach ($times->times("posicao_BR") as $key => $value) {
         array_push($a,$value['nome']);
     }
@@ -30,9 +31,14 @@ if (!empty($_GET['addRank'])){
         }
         $soma += pow($dif, 2);
     }
-    print_r($palpite);
-    echo sqrt($soma);
+
     $rank->AddRank($_SESSION['id'], sqrt($soma),$cont);
+       echo " <div class='alert alert-success alert-dismissible fade show' role='alert'>
+              <strong>PAlPITE EFETUADO!</strong> verifique sua posição no rank ao lado.
+              <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                <span aria-hidden='true'>&times;</span>
+                    </button>
+                </div>";
 }
 
 ?>

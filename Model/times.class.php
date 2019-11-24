@@ -4,7 +4,7 @@ class Times extends Connect
 {
     public function times(){
         $conn = parent::conn();
-        $query = "SELECT * FROM times ORDER BY posicao_BR";
+        $query = 'SELECT * FROM public.times ORDER BY "posicao_BR"';
 
         $stt = $conn->prepare($query);
         $data;

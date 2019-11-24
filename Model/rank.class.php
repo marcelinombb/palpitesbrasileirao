@@ -8,7 +8,7 @@ class Rank extends Connect
 {
 	public function AddRank($id_user, $palpite, $cont){
 		$conn = parent::conn();
-		$query = "INSERT INTO palpites(id_user,palpite,acertos) VALUES($id_user,$palpite,$cont)";
+		$query = "INSERT INTO public.palpites(id_user,palpite,acertos) VALUES($id_user,$palpite,$cont)";
 
 		$stt = $conn->prepare($query); 
 		if ($stt->execute()) {
@@ -20,7 +20,7 @@ class Rank extends Connect
 	public function RankAtual($ranque){
 		$conn = parent::conn();
 		$eoq = ["palpite"=>'ASC',"acertos"=>'DESC'];
-		$query = "SELECT users.nome as nome,palpites.$ranque as rank FROM palpites INNER JOIN users on users.user_id = palpites.id_user ORDER BY " .$ranque." ".$eoq[$ranque];
+		$query = "SELECT public.users.nome as nome,public.palpites.$ranque as rank FROM public.palpites INNER JOIN  public.users on public.users.id_user = public.palpites.id_user ORDER BY " .$ranque." ".$eoq[$ranque];
 		$stt =  $conn->prepare($query);
 		
 		$data;
