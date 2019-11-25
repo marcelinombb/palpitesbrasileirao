@@ -32,3 +32,5 @@ body {
   padding: 3px 8px;
   border-radius: 3px;
 }
+
+.element::-webkit-scrollbar { width: 0 !important }

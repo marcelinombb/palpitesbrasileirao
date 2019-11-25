@@ -84,12 +84,16 @@ $logado = $_SESSION['login'];
                             <div class="tab-content">
                                 <div class="tab-pane active" role="tabpanel" id="tab-1">
                                     <div class="col-xl-12 col-sm-9 " style="margin-top: 10px;">
-                                        <ol class='list-group ' id="rank"></ol>
+                                        <div class="overflow-auto element" style="max-height: 500px;">
+                                            <ol class='list-group ' id="rank"></ol>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="tab-pane" role="tabpanel" id="tab-2">
                                     <div class="col col-sm-9 col-xl-12" style="margin-top: 10px;">
-                                        <ol class='list-group col' id="outroid"></ol>
+                                        <div class="overflow-auto element" style="max-height: 500px;">
+                                            <ol class='list-group col' id="outroid"></ol>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
