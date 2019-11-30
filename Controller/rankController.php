@@ -7,24 +7,23 @@ session_start();
 
 $rank = new Rank();
 
-if (!empty($_GET['addRank'])){
+if (!$_POST){
     $times = new Times();
-    $palpite = explode(" ", $_GET['addRank']);
-    $a = [' '];
+    $palpite = json_decode($_POST['json']);
+    $real = [' '];
     
     foreach ($times->times("posicao_BR") as $key => $value) {
-        array_push($a,$value['nome']);
+        array_push($real,$value['nome']);
     }
 
     //calculo ae
     $soma = 0;
     $cont = 0;
-    unset($palpite[0]);
+    //unset($palpite[0]);
 
     foreach ($palpite as $key => $value) {
         //diferença entre as posições real e palpitte
-        $dif = $key - array_search($value, $a);
-
+        $dif = $key - array_search($value, $real);
         // Se a diferença der 0 o usuario acertou a posição do palpite
         if(!$dif){
             $cont++;

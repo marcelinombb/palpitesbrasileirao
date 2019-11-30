@@ -127,17 +127,23 @@ $logado = $_SESSION['login'];
         }, 500);
 
         function envia() {
-            var test = document.querySelectorAll('#example1');
-            const data = test['0'].innerText;
+            var palpites = document.querySelectorAll('#example1').children;
+            cost array = [];
+            cost data = new FormData();
+            Object.keys(palpites).foreEch((key)=>array.push(palpite[key].innerText));
+            data.append('json',data);
 
-            fetch("../Controller/rankController.php?addRank=" + data)
-                .then(function(response) {
-                    return response.text()
-                })
-                .then(function(res) {
-                    document.getElementById("alert").innerHTML = res;
-                    document.getElementById('btnTable').disabled = true;
-                })
+            fetch("../Controller/rankController.php",{
+                method: "POST",
+                body: data
+            })
+            .then(function(response) {
+                return response.text()
+            })
+            .then(function(res) {
+                document.getElementById("alert").innerHTML = res;
+                document.getElementById('btnTable').disabled = true;
+            })
         }
     </script>
 

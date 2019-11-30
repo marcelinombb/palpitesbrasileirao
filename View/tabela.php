@@ -17,5 +17,6 @@ if($_SESSION['tipo'] == false){
 		echo "<li class='listitem'><img src=" . $value['logo'] . '>  ' . $value['nome'] . '</li>';
 	}
 }
+
 echo "</ol>";
 ?>
