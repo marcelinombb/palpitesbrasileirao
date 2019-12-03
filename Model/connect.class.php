@@ -1,6 +1,6 @@
 <?php 
 /**
- * 
+ * PostgresSQL
  */
 class Connect{
 		/*

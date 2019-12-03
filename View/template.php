@@ -27,11 +27,16 @@ $logado = $_SESSION['login'];
         <div class="row">
             <div class="col">
                 <nav class="navbar navbar-light navbar-expand-md">
-                    <div class="container-fluid"><a class="navbar-brand" href="#">Campeonato Brasileiro</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+                    <div class="container-fluid"><a class="navbar-brand" href="#">Campeonato Brasileiro</a><button
+                            data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span
+                                class="sr-only">Toggle navigation</span><span
+                                class="navbar-toggler-icon"></span></button>
                         <div class="collapse navbar-collapse" id="navcol-1">
                             <ul class="nav navbar-nav">
-                                <li class="nav-item" role="presentation"><a class="nav-link active" href="#"><?= $_SESSION['nome']; ?></a></li>
-                                <li class="nav-item" role="presentation"><a class="nav-link" href="../Controller/logout.php">Sair</a></li>
+                                <li class="nav-item" role="presentation"><a class="nav-link active"
+                                        href="#"><?= $_SESSION['id']; ?></a></li>
+                                <li class="nav-item" role="presentation"><a class="nav-link"
+                                        href="../Controller/logout.php">Sair</a></li>
                                 <li class="nav-item" role="presentation"></li>
                             </ul>
                         </div>
@@ -46,31 +51,33 @@ $logado = $_SESSION['login'];
                     include_once "tabela.php";
                 ?>
                 <?php if ($_SESSION['tipo'] == true) { ?>
-                    <!-- só aparece se for um adm logado 
+                <!-- só aparece se for um adm logado 
                         o template se modifica de acordo com tipo de usuarios    
                         -->
-                    <a href="#"><button type="button" class="btn btn-success bp" style="fixed-bottom; margin-left:100px;">atualizar tabela</button></a>
-                    <style>
-                        .bp {
-                            position: fixed;
-                            float: bottom;
-                            bottom: 15px;
-                            right: 15px;
-                            z-index: 100;
-                            border-radius: 10%;
-                        }
-                    </style>
+                <a href="#"><button type="button" class="btn btn-success bp"
+                        style="fixed-bottom; margin-left:100px;">atualizar tabela</button></a>
+                <style>
+                    .bp {
+                        position: fixed;
+                        float: bottom;
+                        bottom: 15px;
+                        right: 15px;
+                        z-index: 100;
+                        border-radius: 10%;
+                    }
+                </style>
                 <?php } else { ?>
-                    <button id="btnTable" class="btn btn-lg bp" data-bs-hover-animate="bounce" onclick="envia()" style="background-color: rgb(25,153,37);fixed-bottom; margin-left:100px;">Palpitar</button>
-                    <style>
-                        .bp {
-                            position: fixed;
-                            float: bottom;
-                            bottom: 15px;
-                            right: 15px;
-                            z-index: 100;
-                        }
-                    </style>
+                <button id="btnTable" class="btn btn-lg bp" data-bs-hover-animate="bounce" onclick="envia()"
+                    style="background-color: rgb(25,153,37);fixed-bottom; margin-left:100px;">Palpitar</button>
+                <style>
+                    .bp {
+                        position: fixed;
+                        float: bottom;
+                        bottom: 15px;
+                        right: 15px;
+                        z-index: 100;
+                    }
+                </style>
                 <?php } ?>
             </div>
             <div class="col col-md-4">
@@ -78,8 +85,10 @@ $logado = $_SESSION['login'];
                     <div class="col">
                         <div>
                             <ul class="nav nav-tabs">
-                                <li class="nav-item"><a class="nav-link active" role="tab" data-toggle="tab" href="#tab-1">Rank de Proximidade</a></li>
-                                <li class="nav-item"><a class="nav-link" role="tab" data-toggle="tab" href="#tab-2">Rank de Acertos</a></li>
+                                <li class="nav-item"><a class="nav-link active" role="tab" data-toggle="tab"
+                                        href="#tab-1">Rank de Proximidade</a></li>
+                                <li class="nav-item"><a class="nav-link" role="tab" data-toggle="tab" href="#tab-2">Rank
+                                        de Acertos</a></li>
                             </ul>
                             <div class="tab-content">
                                 <div class="tab-pane active" role="tabpanel" id="tab-1">
@@ -127,23 +136,20 @@ $logado = $_SESSION['login'];
         }, 500);
 
         function envia() {
-            var palpites = document.querySelectorAll('#example1').children;
-            cost array = [];
-            cost data = new FormData();
-            Object.keys(palpites).foreEch((key)=>array.push(palpite[key].innerText));
-            data.append('json',data);
-
-            fetch("../Controller/rankController.php",{
-                method: "POST",
-                body: data
-            })
-            .then(function(response) {
-                return response.text()
-            })
-            .then(function(res) {
-                document.getElementById("alert").innerHTML = res;
-                document.getElementById('btnTable').disabled = true;
-            })
+            let ul = document.getElementById('example1').children;
+            let array = [];
+            Object.keys(ul).forEach((key) => array.push(ul[key].innerText));
+            const data = new FormData();
+            data.append('json', JSON.stringify(array));
+            fetch('../Controller/rankController.php', {
+                    method: "POST",
+                    body: data
+                })
+                .then((response) => response.text())
+                .then((res) => {
+                    document.getElementById("alert").innerHTML = res;
+                    document.getElementById('btnTable').disabled = true;
+                })
         }
     </script>
 
@@ -154,10 +160,10 @@ $logado = $_SESSION['login'];
         if (x == "'in'") {
             console.log('é sim');
             document.getElementById('btnTable').disabled = true;
-            console.log(document.getElementById('btnTable'));
+            console.log(document.getElementById('btnTable'))
         }
 
-        console.log(x);
+        console.log(x)
     </script>
 
 </body>

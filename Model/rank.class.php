@@ -45,4 +45,15 @@ class Rank extends Connect
 		return 0;
 	}
 
+	public function delete($id){
+		$conn = parent::conn();
+		$query = "DELETE FROM public.palpites WHERE id_user = $id";
+		
+		$stt = $conn->prepare($query); 
+		if ($stt->execute()) {
+			return 1;
+		}
+		return 0;
+	}
+
 }

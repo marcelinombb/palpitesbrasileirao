@@ -7,7 +7,7 @@ session_start();
 
 $rank = new Rank();
 
-if (!$_POST){
+if (!empty($_POST['json'])){
     $times = new Times();
     $palpite = json_decode($_POST['json']);
     $real = [' '];
@@ -38,6 +38,9 @@ if (!$_POST){
                 <span aria-hidden='true'>&times;</span>
                     </button>
                 </div>";
+}
+if(!empty($_GET['del'])){
+   echo $rank->delete($_GET['del']);
 }
 
 ?>
