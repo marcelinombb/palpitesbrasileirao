@@ -1,0 +1,21 @@
+{
+    "name": "marcelino/palpitesbrasileirao",
+    "authors": [
+        {
+            "name": "marcelinmbb",
+            "email": "marcelinobraga@alunos.ifce.edu.br"
+        }
+    ],
+    "require": {
+        "php": ">= 7",
+      "ext-json": "*"
+    },
+    "autoload":{
+    	"psr-4":{
+    		"app\\Controllers\\" : "app/Controllers",
+    		"app\\Models\\" : "app/Models",
+    		"app\\Views\\": "app/Views"
+        },
+        "files":["app/config/config.php"]
+    }
+}
