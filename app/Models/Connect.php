@@ -13,7 +13,7 @@ class Connect{
 		public static function conn(){
 			if(!isset(self::$instance)){
 				
-				self::$instance = new PDO("mysql:host=localhost;dbname=trabHairon",'root' ,'');
+				self::$instance = new PDO(DATABASE['database'].":host=".DATABASE['host'].";dbname=".DATABASE['dbname'],DATABASE['username'] ,DATABASE['passwd']);
 				self::$instance->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 				self::$instance->setAttribute(PDO::ATTR_ORACLE_NULLS, PDO::NULL_EMPTY_STRING);
 			}

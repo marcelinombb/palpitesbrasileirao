@@ -2,6 +2,7 @@
 
 namespace app\Models;
 use \PDO;
+use \PDOException;
 
 class Times
 {
@@ -13,11 +14,11 @@ class Times
 
     public function posicoesAtuais(){
 
-        $query = 'SELECT * FROM public.times ORDER BY "posicao_BR"';
+        $query = 'SELECT * FROM times ORDER BY Posicao_BR';
         $stmt = $this->conn->prepare($query);
 
         if ($stmt->execute()) {
-            echo json_encode($stmt->fetch(PDO::FETCH_ASSOC));
+             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }else{
             return  0;
         }
@@ -25,15 +26,21 @@ class Times
     }
 
     public function atualizarPosicoes($pos = Array()){
+        try {
+            $query = "UPDATE times SET Posicao_BR = :key WHERE nome = :value";
+            $stmt = $this->conn->prepare($query);
 
-        $conn = parent::conn();
-        $cont = 0;
-        foreach ($pos as $key => $value) {
-        $query = "UPDATE times SET Posicao_BR = $key WHERE nome = '$value' ";
-            if($res =  mysqli_query($conn,$query)){
-                $cont++;
+            foreach ($pos as $key => $value) {
+                $stmt->bindValue(":key",$key+1,PDO::PARAM_INT);
+                $stmt->bindValue(":value",$value,PDO::PARAM_STR);
+                $stmt->execute();
+                $stmt->closeCursor();
             }
+            return true;
+        }catch (PDOException $e){
+            echo $e;
         }
-        return $cont >= 19 ? "ok": "deu ruim";
+
+
     }
 }

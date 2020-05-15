@@ -1,7 +1,7 @@
 <?php
 
 namespace app\Models;
-
+use \PDO;
 /**
  * 
  */
@@ -12,34 +12,32 @@ class Rank
 		$this->conn = Connect::conn();
 	}
 
-	public function AddRank($id_user, $palpite, $cont){
-		$query = "INSERT INTO public.palpites(id_user,palpite,acertos) VALUES($id_user,$palpite,$cont)";
-
-		$stt = $this->conn->prepare($query); 
+	public function addRank($id_user, $palpite, $cont){
+		$query = "INSERT INTO palpites(id_user,palpite,acertos) VALUES(:id_user,:palpite,:cont)";
+		$stt = $this->conn->prepare($query);
+		$stt->bindValue(":id_user",$id_user,PDO::PARAM_INT);
+		$stt->bindValue(":palpite",$palpite,PDO::PARAM_STR);
+		$stt->bindValue(":cont",$cont,PDO::PARAM_INT);
 		if ($stt->execute()) {
 			return 1;
 		}
 		return 0;
 	}
 
-	public function RankAtual($ranque){
+	public function rankAtual($ranque){
 		$eoq = ["palpite"=>'ASC',"acertos"=>'DESC'];
-		$query = "SELECT public.users.nome as nome,public.palpites.$ranque as rank FROM public.palpites INNER JOIN  public.users on public.users.id_user = public.palpites.id_user ORDER BY " .$ranque." ".$eoq[$ranque];
+		$query = "SELECT nome as nome,palpites.$ranque as rank FROM palpites INNER JOIN users on users.user_id = palpites.id_user ORDER BY " .$ranque." ".$eoq[$ranque];
 		$stt =  $this->conn->prepare($query);
-		
-		$data;
+
 		if ($stt->execute()) {
-			while($result = $stt->fetch(PDO::FETCH_ASSOC)){
-				$data[] = $result;
-			}
-			return $data;
+		    return $stt->fetchAll(PDO::FETCH_ASSOC);
 		}else{
 			return 	0;
 		}
 
 }
 	public function attRank($id_user, $palpite, $cont){
-		$query = "UPDATE palpites SET id_user = $id_user, palpite = $palpite, acertos = $cont";
+		$query = "UPDATE palpites SET user_id = $id_user, palpite = $palpite, acertos = $cont";
 		
 		$stt = $this->conn->prepare($query); 
 		if ($stt->execute()) {

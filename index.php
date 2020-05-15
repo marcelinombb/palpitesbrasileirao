@@ -5,19 +5,21 @@ if (isset($_SESSION['user'])) {
     header("Location:".BASE_URL."/app/Views/template.php");
 }
 ?>
+
 <!DOCTYPE html>
-<html>
+<html lang="pt">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>login</title>
+    <link rel="icon" href="">
     <link rel="stylesheet" href="app/Views/assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="app/Views/assets/fonts/ionicons.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
     <link rel="stylesheet" href="app/Views/assets/css/Login-Form-Clean.css">
     <link rel="stylesheet" href="app/Views/assets/css/Registration-Form-with-Photo.css">
-    <link rel="stylesheet" href="app/Views/assets/css/styles.css">
+    <link rel="stylesheet" href="app/Views/assets/css/style.css">
 </head>
 
 <body>
@@ -32,10 +34,9 @@ if (isset($_SESSION['user'])) {
         </form>
     </div>
     <script src="app/Views/assets/js/jquery.min.js"></script>
-    <script src="app/Views/assets/js/script.js"></script>
+    <script src="app/Views/assets/js/script1.js"></script>
     <script src="app/Views/assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="app/Views/assets/js/bs-init.js"></script>
-    <script src="app/Views/assets/js/bs-animation.js"></script>
 
 </body>
 </html>

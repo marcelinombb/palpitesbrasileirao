@@ -6,7 +6,7 @@ if (!isset($_SESSION['user'])) {
 }
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
 
 <head>
     <meta charset="utf-8">
@@ -14,7 +14,7 @@ if (!isset($_SESSION['user'])) {
     <title>Palpite</title>
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
-    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
 <body style="background-color: rgb(241,247,252);">
@@ -29,9 +29,9 @@ if (!isset($_SESSION['user'])) {
                         <div class="collapse navbar-collapse" id="navcol-1">
                             <ul class="nav navbar-nav">
                                 <li class="nav-item" role="presentation"><a class="nav-link active"
-                                        href="#"><?= $_SESSION['user']['nome']; ?></a></li>
+                                        href="#"><?=$_SESSION['user']['tipo'] ? "Ademiro ".$_SESSION['user']['nome'] :$_SESSION['user']['nome']; ?></a></li>
                                 <li class="nav-item" role="presentation">
-                                    <button class="nav-link" onclick="logout()">Sair</button></li>
+                                    <a class="nav-link" href="#" onclick="logout()">Sair</a></li>
                                 <li class="nav-item" role="presentation"></li>
                             </ul>
                         </div>
@@ -42,38 +42,14 @@ if (!isset($_SESSION['user'])) {
         <div class="row">
             <div class="col col-md-8 col-sm-12" id="botaumid">
                 <span id='alert'></span>
-<!--                --><?php
-//                    include_once "tabela.php";
-//                ?>
-<!--                --><?php //if ($_SESSION['user']['tipo'] == true) { ?>
-<!--                <!-- só aparece se for um adm logado -->
-<!--                        o template se modifica de acordo com tipo de usuarios    -->
-<!--                        -->-->
-<!--                <a href="#"><button type="button" class="btn btn-success bp"-->
-<!--                        style="fixed-bottom; margin-left:100px;">atualizar tabela</button></a>-->
-<!--                <style>-->
-<!--                    .bp {-->
-<!--                        position: fixed;-->
-<!--                        float: bottom;-->
-<!--                        bottom: 15px;-->
-<!--                        right: 15px;-->
-<!--                        z-index: 100;-->
-<!--                        border-radius: 10%;-->
-<!--                    }-->
-<!--                </style>-->
-<!--                --><?php //} else { ?>
-<!--                <button id="btnTable" class="btn btn-lg bp" data-bs-hover-animate="bounce" onclick="envia()"-->
-<!--                    style="background-color: rgb(25,153,37);fixed-bottom; margin-left:100px;">Palpitar</button>-->
-<!--                <style>-->
-<!--                    .bp {-->
-<!--                        position: fixed;-->
-<!--                        float: bottom;-->
-<!--                        bottom: 15px;-->
-<!--                        right: 15px;-->
-<!--                        z-index: 100;-->
-<!--                    }-->
-<!--                </style>-->
-<!--                --><?php //} ?>
+                <?php if ($_SESSION['user']['tipo'] == true) { ?>
+               <!-- só aparece se for um adm logado
+                       <!-- o template se modifica de acordo com tipo de usuarios  -->
+                    <button class="btn btn-success btn-lg bp" data-bs-hover-animate="bounce" onclick="atualizarPosicoesTimes()">atualizar tabela</button>
+                <?php } else { ?>
+                <button id="btnTable" class="btn btn-success btn-lg bp" data-bs-hover-animate="bounce" onclick="enviarPalpite()"
+                    >Palpitar</button>
+                <?php } ?>
             </div>
             <div class="col col-md-4">
                 <div class="row row-xl-12 position-fixed">
@@ -89,14 +65,14 @@ if (!isset($_SESSION['user'])) {
                                 <div class="tab-pane active" role="tabpanel" id="tab-1">
                                     <div class="col-xl-12 col-sm-9 " style="margin-top: 10px;">
                                         <div class="overflow-auto element" style="max-height: 500px;">
-                                            <ol class='list-group ' id="rank"></ol>
+                                            <ol class='list-group ' id="palpite"></ol>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="tab-pane" role="tabpanel" id="tab-2">
                                     <div class="col col-sm-9 col-xl-12" style="margin-top: 10px;">
                                         <div class="overflow-auto element" style="max-height: 500px;">
-                                            <ol class='list-group col' id="outroid"></ol>
+                                            <ol class='list-group col' id="acertos"></ol>
                                         </div>
                                     </div>
                                 </div>
@@ -104,75 +80,24 @@ if (!isset($_SESSION['user'])) {
                         </div>
                     </div>
                 </div>
-                <!-- <div class="col offset-xl-0 col-sm-9"><button class="btn btn-primary btn-block btn-lg" data-bs-hover-animate="bounce" type="button" style="margin-top: 100px;background-color: rgb(25,153,37);">Palpitar</button></div> -->
+<!--                 <div class="col offset-xl-0 col-sm-9"r><button class="btn btn-primary btn-block btn-lg" data-bs-hove-animate="bounce" type="button" style="margin-top: 100px;background-color: rgb(25,153,37);">Palpitar</button></div>-->
             </div>
         </div>
-    </div>
     </div>
     <script src="assets/js/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/script1.js"></script>
     <script src="assets/js/bs-init.js"></script>
     <script>
-        const BASE_URL = "http://localhost/palpitesbrasileirao"
-        function logout(){
-            fetch(BASE_URL+"/route.php?url=Auth/logout",{
-                method: "POST"
-            })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.logout){
-                        window.location = BASE_URL
-                    }
-                })
-        }
-        new Sortable(example1, {
-            animation: 150,
-            ghostClass: 'blue-background-class'
-            /*  swap: true, // Enable swap plugin
-             swapClass: 'highlight', // The class applied to the hovered swap item
-             animation: 150 */
-        });
+        loadTimes()
+        setInterval(() => {
+             $("#palpite").load("rankPalpite.php");
+        }, 2000);
 
         setInterval(() => {
-            $("#rank").load("rank.php");
-        }, 500);
-
-        setInterval(() => {
-            $("#outroid").load("rankPosicao.php");
-        }, 500);
-
-        function envia() {
-            let ul = document.getElementById('example1').children;
-            let array = [];
-            Object.keys(ul).forEach((key) => array.push(ul[key].innerText));
-            const data = new FormData();
-            data.append('json', JSON.stringify(array));
-            fetch('../Controller/rankController.php', {
-                    method: "POST",
-                    body: data
-                })
-                .then((response) => response.text())
-                .then((res) => {
-                    document.getElementById("alert").innerHTML = res;
-                    document.getElementById('btnTable').disabled = true;
-                })
-        }
-    </script>
-
-    <script>
-        //isso é um crime misturar js com php
-        var x = "'<?php echo $ver; ?>'";
-
-        if (x == "'in'") {
-            console.log('é sim');
-            document.getElementById('btnTable').disabled = true;
-            console.log(document.getElementById('btnTable'))
-        }
-
-        console.log(x)
-
-
+             $("#acertos").load("rankAcertos.php");
+        }, 2000);
 
     </script>
 

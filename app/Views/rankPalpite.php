@@ -1,10 +1,9 @@
 <?php
-include_once "../Controllers/rankController.php";
-$rank = new Rank();
-$r = $rank->RankAtual('palpite');
 
-if ($r) {
-    foreach ($r as $key => $value) {
+$data = json_decode(file_get_contents('http://localhost/palpitesbrasileirao/route.php?url=Rank/rankAtual/palpite'),true);
+
+if ($data) {
+    foreach ($data as $key => $value) {
         $pasento = 100 - $value['rank'];
         $pasento = number_format($pasento, 0, '.', '');
         if ($pasento==100) {

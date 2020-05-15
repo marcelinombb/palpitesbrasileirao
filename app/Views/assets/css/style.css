@@ -34,3 +34,13 @@ body {
 }
 
 .element::-webkit-scrollbar { width: 0 !important }
+
+.bp {
+    position: fixed;
+    float: bottom;
+    bottom: 15px;
+    right: 10px;
+    z-index: 100;
+    //fixed :
+    margin-left:100px;
+}

@@ -10,14 +10,17 @@ class AuthController
         $form = json_decode(file_get_contents('php://input'), true);
         $user = new User();
         $data = $user->logar($form['login'],$form['senha']);
+
+        $result = array("result" => false);
+
         if (!empty($data)) {
             $_SESSION['user']['email'] = $data['email'];
             $_SESSION['user']['nome'] = $data['nome'];
             $_SESSION['user']['id'] = $data['user_id'];
-            $_SESSION['user']['type'] = $data['type'];
-            //print_r($data);
-            echo json_encode($data);
+            $_SESSION['user']['tipo'] = $data['type'];
+            $result['result'] =  true;
         }
+        echo json_encode($result);
     }
 
     public function cadastro(){
