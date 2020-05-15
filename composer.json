@@ -8,7 +8,8 @@
     ],
     "require": {
         "php": ">= 7",
-      "ext-json": "*"
+      "ext-json": "*",
+      "ext-pdo": "*"
     },
     "autoload":{
     	"psr-4":{
