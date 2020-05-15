@@ -1,10 +1,8 @@
 <?php
-include_once "../Controller/rankController.php";
-$rank = new Rank();
-$r = $rank->RankAtual('acertos');
+$data = json_decode(file_get_contents('http://localhost/palpitesbrasileirao/route.php?url=Rank/rankAtual/acertos'),true);
 
-if ($r) {
-    foreach ($r as $key => $value) {
+if ($data) {
+    foreach ($data as $key => $value) {
         $key = $key + 1;
         echo "<li class='list-group-item'><span class='badge badge-primary badge-pill'>$key#</span> " . $value['nome'] . ' '.$value['rank'].'</li>';
     }
