@@ -1,4 +1,4 @@
-# palpitesbrasileirao
+# palpitesbrasileirao : https://testes-estudos.000webhostapp.com/palpitesbrasileirao/
 
 # Recursos usados:
 - SortableJS : https://sortablejs.github.io/Sortable/
